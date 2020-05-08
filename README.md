@@ -2,6 +2,8 @@
 
 This plugin provides easy to use [materialize](https://materializecss.com) theme in CakePHP 4.x
 
+![preview](https://github.com/sdtorresl/matherialize-theme/blob/master/webroot/img/preview.png)
+
 ## Prerequisites
 
 A complete CakePHP environment is required for this proyect.
