@@ -30,6 +30,7 @@ $cakeDescription = 'CakePHP';
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <?= $this->Html->css('MaterializeTheme.materialize.min.css') ?>
+    <?= $this->Html->css('MaterializeTheme.main.css') ?>
     <?= $this->Html->script('MaterializeTheme.materialize.min.js') ?>
 
     <?= $this->fetch('meta') ?>
