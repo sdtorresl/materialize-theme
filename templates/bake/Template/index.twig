@@ -1,0 +1,87 @@
+{#
+/**
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @since         2.0.0
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+#}
+<?php
+/**
+ * @var \{{ namespace }}\View\AppView $this
+ * @var \{{ entityClass }}[]|\Cake\Collection\CollectionInterface ${{ pluralVar }}
+ */
+?>
+{% set fields = Bake.filterFields(fields, schema, modelObject, indexColumns, ['binary', 'text']) %}
+
+<section class="{{ pluralVar }} index card">
+    <div class="card-header">
+        <div class="card-content">
+        <span class="card-title"><?=__('{{ pluralHumanName }}') ?></span>
+
+        <table class="centered responsive-table">
+            <thead>
+                <tr>
+{% for field in fields %}
+                    <th scope="col"><?= $this->Paginator->sort('{{ field }}') ?></th>
+{% endfor %}
+                    <th scope="col" class="actions"><?= __('Actions') ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach (${{ pluralVar }} as ${{ singularVar }}): ?>
+                <tr>
+{% for field in fields %}
+    {% set isKey = false %}
+    {% if associations.BelongsTo %}
+        {% for alias, details in associations.BelongsTo %}
+            {% if field == details.foreignKey %}
+                {% set isKey = true %}
+                    <td><?= ${{ singularVar }}->has('{{ details.property }}') ? $this->Html->link(${{ singularVar }}->{{ details.property }}->{{ details.displayField }}, ['controller' => '{{ details.controller }}', 'action' => 'view', ${{ singularVar }}->{{ details.property }}->{{ details.primaryKey[0] }}]) : '' ?></td>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% if isKey is not same as(true) %}
+        {% set columnData = Bake.columnData(field, schema) %}
+        {% if columnData.type not in ['integer', 'float', 'decimal', 'biginteger', 'smallinteger', 'tinyinteger'] %}
+                    <td><?= h(${{ singularVar }}->{{ field }}) ?></td>
+        {% else %}
+                    <td><?= $this->Number->format(${{ singularVar }}->{{ field }}) ?></td>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+{% set pk = '$' ~ singularVar ~ '->' ~ primaryKey[0] %}
+                    <td class="actions">
+                        <?= $this->Html->link('<i class="fal fa-eye"></i>', ['action' => 'view', {{ pk|raw }}], ['escape' => false, 'title' => __('View')] ) ?>
+                        <?= $this->Html->link('<i class="fal fa-edit"></i>', ['action' => 'edit', {{ pk|raw }}], ['escape' => false, 'title' => __('Edit')] ) ?>
+                        <?= $this->Form->postLink('<i class="fal fa-trash"></i>', ['action' => 'delete', {{ pk|raw }}], [
+                            'confirm' => __('Are you sure you want to delete # {0}?', {{ pk|raw }}),
+                            'escape' => false,
+                            'class' => 'delete',
+                            'title' => __('Delete')]) ?>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        
+        <div class="paginator center-align">
+            <ul class="pagination">
+                <?= $this->Paginator->first('<<') ?>
+                <?= $this->Paginator->prev('<') ?>
+                <?= $this->Paginator->numbers() ?>
+                <?= $this->Paginator->next('>') ?>
+                <?= $this->Paginator->last('>>') ?>
+            </ul>
+            <p><?= $this->Paginator->counter(__('Page {{ '{{' }}page{{ '}}' }} of {{ '{{' }}pages{{ '}}' }}, showing {{ '{{' }}current{{ '}}' }} record(s) out of {{ '{{' }}count{{ '}}' }} total')) ?></p>
+        </div>
+    </div>
+</section>
