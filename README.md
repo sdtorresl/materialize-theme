@@ -17,12 +17,12 @@ You can install this plugin into your CakePHP application using [composer](https
 The recommended way to install composer packages is:
 
 ```{bash}
-composer require sdtorresl/materialize-theme
+composer require sdtorresl/materialize-theme:dev-master
 ```
 
 ## Configuration
 
-Load the plugin in your `src/Application.php` file:
+Load the plugin in your `src/Application.php` file (`bootsrap()` method):
 
 ```{php}
 $this->addPlugin('MaterializeTheme');
@@ -31,7 +31,7 @@ $this->addPlugin('MaterializeTheme');
 To set the default bake template add the follow lines to `config/bootstrap.php`:
 
 ```{php}
-Plugin::load('MaterializeTheme', ['bootstrap' => false, 'routes' => false]);
+Configure::write('Bake.theme', 'MaterializeTheme');
 ```
 
 To set the default layout in `AppController` add the follow method:
@@ -52,8 +52,8 @@ If you need to extend the templates follow the next steps:
 
 ```{bash}
 cd APP_HOME
-mkdir -p templates/plugin/sdtorresl/MaterializeTheme/
-cp -r vendor/sdtorresl/MaterializeTheme/* templates/plugin/sdtorresl/MaterializeTheme/
+mkdir -p templates/plugin/sdtorresl/materialize-theme
+cp -r vendor/sdtorresl/materialize-theme/templates/ templates/plugin/sdtorresl/materialize-theme/
 ```
 
 More info related with overriding is available [here](https://book.cakephp.org/4/en/plugins.html#overriding-plugin-templates-from-inside-your-application):
