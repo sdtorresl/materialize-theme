@@ -22,7 +22,7 @@ composer require sdtorresl/materialize-theme:dev-master
 
 ## Configuration
 
-Load the plugin in your `src/Application.php` file:
+Load the plugin in your `src/Application.php` file (`bootsrap()` method):
 
 ```{php}
 $this->addPlugin('MaterializeTheme');
