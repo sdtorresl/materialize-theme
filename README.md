@@ -50,12 +50,12 @@ public function beforeRender(EventInterface $event) {
 
 If you need to extend the templates follow the next steps:
 
-
 ```{bash}
 cd APP_HOME
 mkdir -p templates/plugin/sdtorresl/MaterializeTheme/
 cp -r vendor/sdtorresl/MaterializeTheme/* templates/plugin/sdtorresl/MaterializeTheme/
 ```
+
 More info related with overriding is available [here](https://book.cakephp.org/4/en/plugins.html#overriding-plugin-templates-from-inside-your-application):
 
 ## Authors

@@ -22,8 +22,7 @@
 {% set fields = Bake.filterFields(fields, schema, modelObject, indexColumns, ['binary', 'text']) %}
 
 <section class="{{ pluralVar }} index card">
-    <div class="card-header">
-        <div class="card-content">
+    <div class="card-content">
         <span class="card-title"><?=__('{{ pluralHumanName }}') ?></span>
 
         <table class="centered responsive-table">
@@ -82,6 +81,12 @@
                 <?= $this->Paginator->last('>>') ?>
             </ul>
             <p><?= $this->Paginator->counter(__('Page {{ '{{' }}page{{ '}}' }} of {{ '{{' }}pages{{ '}}' }}, showing {{ '{{' }}current{{ '}}' }} record(s) out of {{ '{{' }}count{{ '}}' }} total')) ?></p>
+        </div>
+
+        <div class="row">
+            <div class="d-flex jc-end">
+                <?= $this->Html->link(__('Add {{ singularVar }}'), ['action' => 'add'], ['class' => 'btn']) ?>
+            </div>
         </div>
     </div>
 </section>
