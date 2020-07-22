@@ -5,6 +5,6 @@ return [
     'formGroup' => '{{input}}{{label}}',
     'textarea' => '<textarea name="{{name}}" class="materialize-textarea" {{attrs}}>{{value}}</textarea>',
     'file' => '<div class="file-field"><div class="btn"><span>' . __('Upload') . '</span><input name="{{name}}" type="file"></div><div class="file-path-wrapper"><input class="file-path" {{attrs}}></div></div>',
-    'checkbox' => '<input type="checkbox" name="{{name}}" {{attrs}}>',
+    'checkbox' => '<input type="checkbox" {{attrs}}>',
     'nestingLabel' => '{{hidden}}<p><label{{attrs}}>{{input}}<span>{{text}}</span></label></p>',
 ];
